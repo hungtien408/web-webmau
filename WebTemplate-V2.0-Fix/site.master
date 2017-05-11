@@ -1,0 +1,94 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="site.master.cs" Inherits="site" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Administrator</title>
+    <link href="assets/styles/admin.css" rel="stylesheet" type="text/css" />
+    <link href="assets/styles/superfish.css" rel="stylesheet" type="text/css" />
+    <script src="assets/js/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="assets/js/superfish.js" type="text/javascript"></script>
+    <script src="assets/js/common.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        // initialise plugins
+        jQuery(function () {
+            jQuery('ul.sf-menu').superfish();
+        });
+    </script>
+    <asp:ContentPlaceHolder ID="cphHead" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server" class="submitDialog">
+    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+    </asp:ToolkitScriptManager>
+    <div id="wrapper">
+        <div id="menu">
+            <ul class="sf-menu">
+                <li><a class="active">Product</a>
+                    <%= new TLLib.ProductCategory().ProductCategoryMenuSelectAll("product.aspx", "id", "0", -1, false) %>
+                </li>
+                <li><a class="active">Product With Category Image</a>
+                    <%= new TLLib.ProductCategory().ProductCategoryMenuSelectAll("product.aspx", "id", "0", -1, false, true, "res/productcategory")%>
+                </li>
+                <li><a>Article</a>
+                    <%= new TLLib.ArticleCategory().ArticleCategoryMenuSelectAll("article.aspx", "id", "0", -1, false)%>
+                </li>
+                <li><a>Career</a>
+                    <%= new TLLib.CareerCategory().CareerCategoryMenuSelectAll("career.aspx", "id", "0", -1, false)%>
+                </li>
+                <li><a>Project</a>
+                    <ul>
+                        <li><a href="project.aspx">Manage Projects</a></li>
+                        <li><a href="projectcategory.aspx">Manage Categories</a></li>
+                    </ul>
+                </li>
+                <li><a>Download</a>
+                    <ul>
+                        <li><a href="download.aspx">Manage Downloads</a></li>
+                        <li><a href="downloadcategory.aspx">Manage Categories</a></li>
+                    </ul>
+                </li>
+                <li><a href="videoxml.aspx">Video (XML)</a></li>
+                <li><a>Video</a>
+                    <ul>
+                        <li><a href="video.aspx">Manage Videos</a></li>
+                        <li><a href="videocategory.aspx">Manage Categories</a></li>
+                    </ul>
+                </li>
+                <li><a href="partner.aspx">Partner</a></li>
+                <li><a href="advertisement.aspx">Advertisement</a></li>
+                <li><a href="order.aspx">Order</a></li>
+                <li><a>System Configuration</a>
+                    <ul>
+                        <li><a href="usermanagement.aspx">Users Management</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="loginStatus">
+                <asp:LoginView ID="LoginView1" runat="server">
+                    <LoggedInTemplate>
+                        <a href="ChangePassword.aspx" style="display: inline">
+                            <asp:LoginName ID="LoginName1" runat="server" Font-Bold="true" />
+                        </a>|
+                    </LoggedInTemplate>
+                </asp:LoginView>
+                <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutText="Sign out" LoginText="Sign in"
+                    LogoutAction="Refresh" />
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <div id="center">
+            <asp:ContentPlaceHolder ID="cphBody" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div id="footer">
+        </div>
+    </div>
+    <div id="runScript" runat="server">
+    </div>
+    </form>
+</body>
+</html>
